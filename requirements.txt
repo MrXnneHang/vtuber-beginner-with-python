@@ -1,0 +1,7 @@
+psd_tools
+pyaml
+PyOpenGL
+PyOpenGL_accelerate
+opencv-python
+rimo_utils
+dlib
