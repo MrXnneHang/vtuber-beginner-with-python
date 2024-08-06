@@ -9,4 +9,4 @@ if __name__ == "__main__":
     all_layers = extract_layers(psd)
 
     # 测试图层叠加
-    test_layer_composition(all_layers, width=psd.width, height=psd.height)
+    test_layer_composition(all_layers, width=psd.width, height=psd.height,scale_factor=0.7)

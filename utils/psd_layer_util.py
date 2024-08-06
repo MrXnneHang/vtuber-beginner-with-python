@@ -41,7 +41,7 @@ def extract_layers(psd):
 
     return all_layers
 
-def test_layer_composition(all_layers, width=500, height=500):
+def test_layer_composition(all_layers, width=500, height=500, scale_factor=1.0):
     """
     测试图层的叠加效果，通过将每个图层按顺序叠加到一个空白图像上进行可视化。
 
@@ -49,6 +49,7 @@ def test_layer_composition(all_layers, width=500, height=500):
         all_layers (list): 从PSD文件中提取的图层信息列表。
         width (int): 输出图像的宽度，默认为500。
         height (int): 输出图像的高度，默认为500。
+        scale_factor (float): 缩放系数，控制最终显示图像的大小，默认为1.0。
 
     返回:
         None: 显示合成后的图像。
@@ -93,7 +94,10 @@ def test_layer_composition(all_layers, width=500, height=500):
             img[a:a+crop_height, b:b+crop_width, 3], new_layer[:, :, 3]
         )
 
+    # 根据缩放系数调整图像大小
+    scaled_img = cv2.resize(img, None, fx=scale_factor, fy=scale_factor, interpolation=cv2.INTER_LINEAR)
+
     # 显示结果图像
-    cv2.imshow('叠加后的图像', img.astype(np.uint8))  # 转换为8位整数显示
+    cv2.imshow('叠加后的图像', scaled_img.astype(np.uint8))  # 转换为8位整数显示
     cv2.waitKey(0)
     cv2.destroyAllWindows()
